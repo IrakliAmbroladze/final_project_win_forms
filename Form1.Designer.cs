@@ -28,59 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.clockLabel = new System.Windows.Forms.Label();
-            this.alarmPicker = new System.Windows.Forms.DateTimePicker();
-            this.setAlarmButton = new System.Windows.Forms.Button();
-            this.statusLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.guessButton = new System.Windows.Forms.Button();
+            this.resultLabel = new System.Windows.Forms.Label();
+            this.guessInput = new System.Windows.Forms.NumericUpDown();
+            this.newGameButton = new System.Windows.Forms.Button();
+            this.attemptsLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.guessInput)).BeginInit();
             this.SuspendLayout();
             // 
-            // clockLabel
+            // titleLabel
             // 
-            this.clockLabel.AutoSize = true;
-            this.clockLabel.Location = new System.Drawing.Point(123, 94);
-            this.clockLabel.Name = "clockLabel";
-            this.clockLabel.Size = new System.Drawing.Size(70, 25);
-            this.clockLabel.TabIndex = 0;
-            this.clockLabel.Text = "label1";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(123, 94);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(424, 40);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "Guess the Number (1–100)";
             // 
-            // alarmPicker
+            // guessButton
             // 
-            this.alarmPicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.alarmPicker.Location = new System.Drawing.Point(307, 94);
-            this.alarmPicker.Name = "alarmPicker";
-            this.alarmPicker.ShowUpDown = true;
-            this.alarmPicker.Size = new System.Drawing.Size(280, 31);
-            this.alarmPicker.TabIndex = 1;
+            this.guessButton.Location = new System.Drawing.Point(128, 248);
+            this.guessButton.Name = "guessButton";
+            this.guessButton.Size = new System.Drawing.Size(159, 67);
+            this.guessButton.TabIndex = 2;
+            this.guessButton.Text = "Guess";
+            this.guessButton.UseVisualStyleBackColor = true;
             // 
-            // setAlarmButton
+            // resultLabel
             // 
-            this.setAlarmButton.Location = new System.Drawing.Point(307, 178);
-            this.setAlarmButton.Name = "setAlarmButton";
-            this.setAlarmButton.Size = new System.Drawing.Size(159, 67);
-            this.setAlarmButton.TabIndex = 2;
-            this.setAlarmButton.Text = "Set Alarm";
-            this.setAlarmButton.UseVisualStyleBackColor = true;
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Location = new System.Drawing.Point(351, 184);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(324, 25);
+            this.resultLabel.TabIndex = 3;
+            this.resultLabel.Text = "Enter a number and click Guess.";
             // 
-            // statusLabel
+            // guessInput
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(123, 368);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(70, 25);
-            this.statusLabel.TabIndex = 3;
-            this.statusLabel.Text = "label1";
+            this.guessInput.Location = new System.Drawing.Point(128, 178);
+            this.guessInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.guessInput.Name = "guessInput";
+            this.guessInput.Size = new System.Drawing.Size(120, 31);
+            this.guessInput.TabIndex = 4;
+            this.guessInput.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // newGameButton
+            // 
+            this.newGameButton.Location = new System.Drawing.Point(388, 375);
+            this.newGameButton.Name = "newGameButton";
+            this.newGameButton.Size = new System.Drawing.Size(159, 67);
+            this.newGameButton.TabIndex = 5;
+            this.newGameButton.Text = "New Game";
+            this.newGameButton.UseVisualStyleBackColor = true;
+            // 
+            // attemptsLabel
+            // 
+            this.attemptsLabel.AutoSize = true;
+            this.attemptsLabel.Location = new System.Drawing.Point(383, 269);
+            this.attemptsLabel.Name = "attemptsLabel";
+            this.attemptsLabel.Size = new System.Drawing.Size(192, 40);
+            this.attemptsLabel.TabIndex = 6;
+            this.attemptsLabel.Text = "Attempts: 0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 561);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.setAlarmButton);
-            this.Controls.Add(this.alarmPicker);
-            this.Controls.Add(this.clockLabel);
+            this.Controls.Add(this.attemptsLabel);
+            this.Controls.Add(this.newGameButton);
+            this.Controls.Add(this.guessInput);
+            this.Controls.Add(this.resultLabel);
+            this.Controls.Add(this.guessButton);
+            this.Controls.Add(this.titleLabel);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.guessInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,10 +120,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label clockLabel;
-        private System.Windows.Forms.DateTimePicker alarmPicker;
-        private System.Windows.Forms.Button setAlarmButton;
-        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Button guessButton;
+        private System.Windows.Forms.Label resultLabel;
+        private System.Windows.Forms.NumericUpDown guessInput;
+        private System.Windows.Forms.Button newGameButton;
+        private System.Windows.Forms.Label attemptsLabel;
     }
 }
 

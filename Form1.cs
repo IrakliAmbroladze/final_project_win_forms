@@ -1,65 +1,38 @@
 ﻿using System;
 using System.Windows.Forms;
-
 namespace final_project_win_forms
 {
     public partial class Form1 : Form
     {
-        private readonly Timer timer = new Timer();
-        private bool alarmEnabled;
-        private TimeSpan alarmTime;
-        private DateTime? lastTriggeredDate;
+        private readonly Random random = new Random();
+        private int secretNumber; private int attempts;
         public Form1()
         {
             InitializeComponent();
-            clockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            alarmPicker.Format = DateTimePickerFormat.Time;
-            alarmPicker.ShowUpDown = true;
-            statusLabel.Text = "No alarm set.";
-            setAlarmButton.Click += SetAlarm;
-            timer.Interval = 1000;
-            timer.Tick += UpdateClock;
-            timer.Start();
-            UpdateClock(this, EventArgs.Empty);
+            guessButton.Click += GuessButton_Click;
+            newGameButton.Click += NewGameButton_Click;
+            StartNewGame();
         }
-        private void SetAlarm(object sender, EventArgs e)
+        private void StartNewGame()
         {
-            alarmTime = alarmPicker.Value.TimeOfDay;
-            alarmEnabled = true;
-            lastTriggeredDate = null;
-            statusLabel.Text = "Alarm set for " + alarmTime.ToString(@"hh\:mm");
+            secretNumber = random.Next(1, 101); attempts = 0;
+            guessInput.Minimum = 1; guessInput.Maximum = 100;
+            guessInput.Value = 50; guessInput.Enabled = true; guessButton.Enabled = true;
+            resultLabel.Text = "Enter a number and click Guess.";
+            attemptsLabel.Text = "Attempts: 0";
         }
-
-        private void UpdateClock(object sender, EventArgs e)
+        private void GuessButton_Click(object sender, EventArgs e)
         {
-            DateTime now = DateTime.Now;
-
-            clockLabel.Text = now.ToString("HH:mm:ss");
-
-            if (alarmEnabled &&
-                now.Hour == alarmTime.Hours &&
-                now.Minute == alarmTime.Minutes &&
-                lastTriggeredDate?.Date != now.Date)
+            int guess = (int)guessInput.Value;
+            attempts++;
+            attemptsLabel.Text = "Attempts: " + attempts;
+            if (guess < secretNumber) resultLabel.Text = "Too low! Try a higher number.";
+            else if (guess > secretNumber) resultLabel.Text = "Too high! Try a lower number.";
+            else
             {
-                alarmEnabled = false;
-                lastTriggeredDate = now.Date;
-
-                statusLabel.Text = "Alarm triggered!";
-
-                MessageBox.Show(
-                    "Wake up! Your alarm is ringing.",
-                    "Alarm",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                resultLabel.Text = "Correct! You guessed it in " + attempts + " attempts."; guessInput.Enabled = false; guessButton.Enabled = false;
             }
         }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            timer.Stop();
-            timer.Dispose();
-
-            base.OnFormClosed(e);
-        }
+        private void NewGameButton_Click(object sender, EventArgs e) { StartNewGame(); }
     }
 }
